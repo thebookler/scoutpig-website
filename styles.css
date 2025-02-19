@@ -5,10 +5,10 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     justify-content: center;
 }
 
@@ -24,10 +24,11 @@ p {
 
 /* Footer */
 footer {
-    position: absolute;
-    bottom: 10px;
+    position: relative; /* Keep it flexible for mobile */
+    bottom: 0;
     width: 100%;
     font-size: 1rem;
+    padding: 10px;
 }
 
 footer a {
@@ -37,4 +38,25 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* 🌍 Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        justify-content: flex-start;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-top: 50px;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
 }
