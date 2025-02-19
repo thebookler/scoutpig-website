@@ -1,0 +1,40 @@
+/* General Styles */
+body {
+    background-color: #2a5daa; /* Mid-Blue Background */
+    color: #a8ff60; /* Light Green Text */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+}
+
+/* Main Content */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
