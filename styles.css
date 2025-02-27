@@ -22,9 +22,30 @@ p {
     font-size: 1.2rem;
 }
 
+/* Image Grid Container */
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 images per row on desktop */
+    gap: 20px;
+    max-width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Screenshot Images */
+.screenshot-grid img {
+    width: 100%; /* Makes images responsive */
+    height: auto; /* Keeps aspect ratio */
+    max-width: 400px; /* Adjusts for desktop scaling */
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    display: block;
+    margin: auto;
+}
+
 /* Footer */
 footer {
-    position: relative; /* Keeps it flexible for mobile */
+    position: relative;
     bottom: 0;
     width: 100%;
     font-size: 1rem;
@@ -40,41 +61,23 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* 📸 Carousel Styles */
-.carousel-container {
-    max-width: 90%;
-    margin: auto;
-    padding: 20px;
-}
-
-/* Screenshot Images */
-.screenshot-carousel img {
-    width: 100%; /* Makes images responsive */
-    max-width: 500px; /* Prevents them from being too big */
-    height: auto; /* Keeps aspect ratio */
-    max-height: 80vh; /* Limits height */
-    display: block;
-    margin: auto;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* 🔄 Slick Carousel Navigation */
-.slick-dots {
-    bottom: -20px; /* Moves dots below images */
-}
-
-.slick-dots li button:before {
-    font-size: 10px;
-    color: #fff;
-}
-
-.slick-dots li.slick-active button:before {
-    color: #a8ff60; /* Light Green */
-}
-
 /* 🌍 Responsive Design */
+@media (max-width: 1024px) {
+    .screenshot-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 images per row on tablet */
+    }
+}
+
 @media (max-width: 768px) {
+    .screenshot-grid {
+        grid-template-columns: repeat(1, 1fr); /* Stack images in 1 column on mobile */
+    }
+
+    .screenshot-grid img {
+        max-width: 100%; /* Adjust width for smaller screens */
+        max-height: auto;
+    }
+
     body {
         padding: 10px;
         justify-content: flex-start;
@@ -91,15 +94,5 @@ footer a:hover {
 
     footer {
         font-size: 0.9rem;
-    }
-
-    .carousel-container {
-        max-width: 95%;
-        padding: 10px;
-    }
-
-    .screenshot-carousel img {
-        max-width: 100%;
-        max-height: 60vh;
     }
 }
