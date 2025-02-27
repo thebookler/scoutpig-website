@@ -35,7 +35,29 @@ body {
         padding: 10px;
     }
 }
+
+/* Logo Styling */
+.logo-container {
+    text-align: center;
+    margin-bottom: 10px; /* Less space between logo and title */
+}
+
+.logo-container img {
+    width: 100px; /* Smaller size */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centers the image */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo-container img {
+        width: 80px; /* Slightly smaller logo on mobile */
+    }
+}
+
 /* Main Content */
+
 h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
