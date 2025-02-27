@@ -4,12 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScoutPig - Coming Soon</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Slick Carousel CSS (CDN) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
+
+    <style>
+        /* Custom styling for the carousel */
+        .carousel-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .screenshot {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+        }
+    </style>
 </head>
 <body>
 
     <h1>Scout Pig App Coming Soon!</h1>
     <p>Available soon on the iOS App Store.</p>
+
+    <!-- Screenshot Carousel -->
+    <div class="carousel-container">
+        <div class="screenshot-carousel">
+            <img src="images/screenshot1.jpg" alt="Screenshot 1" class="screenshot">
+            <img src="images/screenshot2.jpg" alt="Screenshot 2" class="screenshot">
+            <img src="images/screenshot3.jpg" alt="Screenshot 3" class="screenshot">
+            <img src="images/screenshot4.jpg" alt="Screenshot 4" class="screenshot">
+            <img src="images/screenshot5.jpg" alt="Screenshot 5" class="screenshot">
+            <img src="images/screenshot6.jpg" alt="Screenshot 6" class="screenshot">
+        </div>
+    </div>
 
     <footer>
         <p>
@@ -17,6 +50,24 @@
             <a href="terms.html">Terms of Service</a>
         </p>
     </footer>
+
+    <!-- jQuery & Slick Carousel Scripts (CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.screenshot-carousel').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                dots: true,
+                arrows: false,
+                adaptiveHeight: true
+            });
+        });
+    </script>
 
 </body>
 </html>
