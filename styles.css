@@ -53,15 +53,23 @@ body {
 /* Responsive Design */
 @media (max-width: 1024px) {
     .logo-container img {
-        width: 120px; /* Slightly smaller on tablets */
+        width: 150px; /* Slightly smaller on tablets */
     }
 }
 
 @media (max-width: 768px) {
     .logo-container img {
-        width: 100%; /* Shrinks further for mobile */
-        max-width: 150px; /* Ensures it scales properly */
+        width: 150px; /* Shrinks further for mobile */
+
     }
+}
+
+/* Support Text */
+
+.support-text {
+    color: #ffffff; /* White text */
+    font-size: 1rem;
+    margin-top: 10px;
 }
 
 /* Main Content */
