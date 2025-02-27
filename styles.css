@@ -24,7 +24,7 @@ p {
 
 /* Footer */
 footer {
-    position: relative; /* Keep it flexible for mobile */
+    position: relative; /* Keeps it flexible for mobile */
     bottom: 0;
     width: 100%;
     font-size: 1rem;
@@ -38,6 +38,39 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* 📸 Carousel Styles */
+.carousel-container {
+    max-width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Screenshot Images */
+.screenshot-carousel img {
+    width: 100%; /* Makes images responsive */
+    max-width: 500px; /* Prevents them from being too big */
+    height: auto; /* Keeps aspect ratio */
+    max-height: 80vh; /* Limits height */
+    display: block;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* 🔄 Slick Carousel Navigation */
+.slick-dots {
+    bottom: -20px; /* Moves dots below images */
+}
+
+.slick-dots li button:before {
+    font-size: 10px;
+    color: #fff;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #a8ff60; /* Light Green */
 }
 
 /* 🌍 Responsive Design */
@@ -58,5 +91,15 @@ footer a:hover {
 
     footer {
         font-size: 0.9rem;
+    }
+
+    .carousel-container {
+        max-width: 95%;
+        padding: 10px;
+    }
+
+    .screenshot-carousel img {
+        max-width: 100%;
+        max-height: 60vh;
     }
 }
