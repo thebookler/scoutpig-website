@@ -43,8 +43,8 @@ body {
 }
 
 .logo-container img {
-    width: 150px; /* Adjusted size for desktop */
-    max-width: 100%; /* Ensures it scales properly */
+    width: 100%; /* Adjusted size for desktop */
+    max-width: 300px; /* Ensures it scales properly */
     height: auto;
     display: block;
     margin: 0 auto;
