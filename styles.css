@@ -59,7 +59,8 @@ body {
 
 @media (max-width: 768px) {
     .logo-container img {
-        width: 100px; /* Shrinks further for mobile */
+        width: 100%; /* Shrinks further for mobile */
+        max-width: 150px; /* Ensures it scales properly */
     }
 }
 
