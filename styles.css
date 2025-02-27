@@ -11,7 +11,30 @@ body {
     min-height: 100vh;
     justify-content: center;
 }
+/* App Description Container */
+.description-container {
+    max-width: 800px; /* Limits width on desktop */
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for better readability */
+    border-radius: 10px;
+}
 
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .description-container {
+        max-width: 90%; /* Slightly wider for tablets */
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .description-container {
+        max-width: 100%; /* Full width on mobile */
+        padding: 10px;
+    }
+}
 /* Main Content */
 h1 {
     font-size: 2.5rem;
