@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Amazon</title>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Login to Amazon</h1>
+    <p>Click below to sign in with your Amazon Seller Account</p>
+    <button id="amazonLogin">Login with Amazon</button>
+
+    <script>
+        // 🔥 Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        document.getElementById("amazonLogin").addEventListener("click", async function() {
+            try {
+                // 🔍 Fetch Client ID from Firestore
+                const docRef = db.collection("config").doc("amazon");
+                const doc = await docRef.get();
+                
+                if (!doc.exists) {
+                    console.error("No Amazon OAuth credentials found!");
+                    alert("Amazon login is currently unavailable. Please try again later.");
+                    return;
+                }
+
+                const clientId = doc.data().clientid; // 🔑 Fetch client ID
+
+                // 🌍 Amazon OAuth Endpoint
+                const amazonAuthUrl = `https://www.amazon.com/ap/oa?client_id=${clientId}&scope=sellingpartnerapi::oauth&response_type=code&redirect_uri=https://scoutpig.com/oauth/callback`;
+
+                // 🔀 Redirect to Amazon OAuth Page
+                window.location.href = amazonAuthUrl;
+
+            } catch (error) {
+                console.error("Error fetching Amazon credentials:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    </script>
+
+</body>
+</html>
