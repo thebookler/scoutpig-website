@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login with Amazon</title>
 
-    <!-- Amazon SDK -->
-    <script src="https://assets.loginwithamazon.com/sdk/na/login1.js"></script>
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,20 +18,21 @@
     <h1>Login to Amazon</h1>
     <p>Click below to sign in with your Amazon Seller Account</p>
 
-    <a id="LoginWithAmazon" href="javascript:void(0)">
+    <!-- Amazon Login Button -->
+    <a id="amazonLogin" href="javascript:void(0)">
         <img border="0" alt="Login with Amazon"
              src="https://images-na.ssl-images-amazon.com/images/G/01/lwa/btnLWA_gold_312x64.png"
              width="200" />
     </a>
 
-<script>
-    document.getElementById("amazonLogin").addEventListener("click", function() {
-        const amazonAuthUrl = "https://sellercentral.amazon.com/apps/authorize/consent?application_id=amzn1.sp.solution.f44ad741-0be2-43f6-91fe-5c15a4bf3740";
-        
-        // 🔀 Redirect to Amazon Authorization Page
-        window.location.href = amazonAuthUrl;
-    });
-</script>
+    <script>
+        document.getElementById("amazonLogin").addEventListener("click", function() {
+            const amazonAuthUrl = "https://sellercentral.amazon.com/apps/authorize/consent?application_id=amzn1.sp.solution.f44ad741-0be2-43f6-91fe-5c15a4bf3740";
+            
+            // 🔀 Redirect to Amazon Authorization Page
+            window.location.href = amazonAuthUrl;
+        });
+    </script>
 
 </body>
 </html>
