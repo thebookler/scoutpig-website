@@ -17,7 +17,7 @@
 
         if (oauthCode && sellerId) {
             // Redirect to the app with the extracted parameters
-            window.location.href = `app.scanpig://callback?spapi_oauth_code=${oauthCode}&selling_partner_id=${sellerId}`;
+            window.location.href = `App.scanpig://callback?spapi_oauth_code=${oauthCode}&selling_partner_id=${sellerId}`;
         } else {
             document.body.innerHTML = "<h1>Authorization Failed</h1><p>Missing OAuth Code or Seller ID.</p>";
         }
