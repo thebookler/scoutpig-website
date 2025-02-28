@@ -27,7 +27,7 @@
 
     <script>
         document.getElementById("amazonLogin").addEventListener("click", function() {
-            const amazonAuthUrl = "https://sellercentral.amazon.com/apps/authorize/consent?application_id=amzn1.sp.solution.f44ad741-0be2-43f6-91fe-5c15a4bf3740&version=beta";
+            const amazonAuthUrl = "https://sellercentral.amazon.com/apps/authorize/consent?application_id=amzn1.sp.solution.f44ad741-0be2-43f6-91fe-5c15a4bf3740&state=12345&version=beta&redirect_uri=https://scoutpig.com/oauth/callback";
             
             // 🔀 Redirect to Amazon Authorization Page
             window.location.href = amazonAuthUrl;
