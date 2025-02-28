@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // Parse URL parameters
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Extract parameters from URL
+        const oauthCode = getQueryParam("spapi_oauth_code");
+        const sellerId = getQueryParam("selling_partner_id");
+
+        if (oauthCode && sellerId) {
+            // Redirect to the app with the extracted parameters
+            window.location.href = `scoutpig://callback?spapi_oauth_code=${oauthCode}&selling_partner_id=${sellerId}`;
+        } else {
+            document.body.innerHTML = "<h1>Authorization Failed</h1><p>Missing OAuth Code or Seller ID.</p>";
+        }
+    </script>
+</head>
+<body>
+    <h1>Redirecting...</h1>
+    <p>If nothing happens, please <a id="manualRedirect" href="#">click here</a>.</p>
+
+    <script>
+        document.getElementById("manualRedirect").href = `scoutpig://callback?spapi_oauth_code=${oauthCode}&selling_partner_id=${sellerId}`;
+    </script>
+</body>
+</html>
