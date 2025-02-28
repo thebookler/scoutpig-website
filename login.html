@@ -27,17 +27,14 @@
              width="200" />
     </a>
 
-    <script>
-        // 🔥 Hardcoded Amazon OAuth Client ID
-        const clientId = "amzn1.application-oa2-client.61c7cc4155f7442fa3ff0dce75d94cd3"; // ⬅️ Replace this with your actual Amazon Client ID
-
-        document.getElementById("LoginWithAmazon").addEventListener("click", function() {
-            const authUrl = `https://www.amazon.com/ap/oa?client_id=${clientId}&scope=sellingpartnerapi::oauth&response_type=code&redirect_uri=https://scoutpig.com/oauth/callback`;
-
-            // 🔀 Redirect to Amazon OAuth Page
-            window.location.href = authUrl;
-        });
-    </script>
+<script>
+    document.getElementById("amazonLogin").addEventListener("click", function() {
+        const amazonAuthUrl = "https://sellercentral.amazon.com/apps/authorize/consent?application_id=amzn1.sp.solution.f44ad741-0be2-43f6-91fe-5c15a4bf3740";
+        
+        // 🔀 Redirect to Amazon Authorization Page
+        window.location.href = amazonAuthUrl;
+    });
+</script>
 
 </body>
 </html>
