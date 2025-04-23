@@ -404,19 +404,21 @@ section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
 .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 177.78%;
     height: 0;
     overflow: hidden;
     border-radius: 1rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .video-container:hover {
@@ -435,6 +437,7 @@ section {
 @media (max-width: 768px) {
     .video-grid {
         grid-template-columns: 1fr;
+        max-width: 300px;
     }
 }
 
@@ -459,4 +462,25 @@ section {
     .section-header h2 {
         font-size: 2rem;
     }
+}
+
+.youtube-link {
+    color: var(--scout-green-500);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.youtube-link:hover {
+    color: var(--scout-green-400);
+}
+
+.youtube-link::after {
+    content: '→';
+    margin-left: 0.25rem;
+    transition: transform 0.3s ease;
+}
+
+.youtube-link:hover::after {
+    transform: translateX(0.25rem);
 } 
