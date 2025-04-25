@@ -144,7 +144,7 @@ section {
 .hero {
     background: linear-gradient(to bottom right, var(--scout-gray-900), var(--scout-gray-800), var(--scout-gray-900));
     color: white;
-    min-height: 100vh;
+    min-height: 65vh;
     position: relative;
     overflow: hidden;
 }
@@ -161,56 +161,38 @@ section {
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
-    padding: 6rem 0;
+    padding: 3rem 0 2rem 0;
     position: relative;
 }
 
-.coming-soon {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--scout-green-400);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    margin-bottom: 2rem;
-    font-size: 0.875rem;
-}
-
-.logo {
-    width: 96px;
-    height: 96px;
-    margin-bottom: 1rem;
+.logo-container {
+    margin-bottom: 1.5rem;
 }
 
 .title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    background: linear-gradient(to right, white, var(--scout-green-200));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
     margin-bottom: 1rem;
 }
 
 .subtitle {
-    font-size: 2rem;
-    font-weight: 400;
-    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
     margin-bottom: 1.5rem;
 }
 
 .description {
     font-size: 1.125rem;
-    color: #d1d5db;
+    margin-bottom: 2rem;
     max-width: 600px;
-    margin: 0 auto 2.5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-buttons {
     display: flex;
-    gap: 1.5rem;
     justify-content: center;
-    align-items: center;
+    gap: 1rem;
 }
 
 .primary-button {
@@ -395,15 +377,15 @@ section {
 
 /* Video Section */
 .videos {
-    padding: 6rem 0;
-    background: white;
+    padding: 0;
+    background: transparent;
 }
 
 .video-grid {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 2rem;
 }
 
 .video-container {
@@ -418,8 +400,16 @@ section {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links.mobile-only {
+        display: flex;
+    }
+
     .hero-content {
-        padding: 4rem 0;
+        padding: 2rem 0 1.5rem 0;
     }
 
     .title {
@@ -427,7 +417,7 @@ section {
     }
 
     .subtitle {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 
     .cta-buttons {
