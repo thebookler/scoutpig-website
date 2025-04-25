@@ -399,6 +399,7 @@ section {
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+    padding-bottom: 50px;
 }
 
 .video-container {
