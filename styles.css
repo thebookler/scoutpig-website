@@ -185,7 +185,7 @@ section {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .subtitle {
@@ -549,9 +549,7 @@ section {
 
 .app-store-button {
     display: inline-block;
-    transition: transform 0.3s ease;
-    text-decoration: none;
-    line-height: 0;
+    margin-bottom: 1rem;
 }
 
 .app-store-button:hover {
