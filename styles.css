@@ -419,6 +419,22 @@ section {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .nav-logo {
+        width: 32px;
+        height: 32px;
+    }
+
+    .nav-title {
+        font-size: 1.25rem;
+        margin: 0;
+    }
+
     .nav-links {
         display: none;
     }
