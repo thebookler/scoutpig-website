@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to ScoutPig Web App...</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="status">Redirecting to ScoutPig Web App...</h1>
+        <div class="spinner"></div>
+        <p>Please wait while we redirect you to the web application.</p>
+        
+        <!-- Debug info -->
+        <div id="debug-info" style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; font-family: monospace; font-size: 12px; text-align: left;">
+            <strong>Debug Info:</strong><br>
+            <div id="debug-content">Loading...</div>
+        </div>
+        
+        <p><small>If you are not redirected automatically, <a href="#" id="manualLink">click here</a>.</small></p>
+    </div>
+
+    <script>
+        // Parse URL parameters
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Extract all parameters from the current URL
+        const oauthCode = getQueryParam("spapi_oauth_code");
+        const sellerId = getQueryParam("selling_partner_id");
+        const error = getQueryParam("error");
+        const errorDescription = getQueryParam("error_description");
+
+        // Build the redirect URL with all parameters
+        function buildRedirectURL() {
+            const baseURL = 'https://scoutpig.web.app/oauth-callback.html';
+            const params = new URLSearchParams();
+            
+            // Add all parameters that exist
+            if (oauthCode) params.append('spapi_oauth_code', oauthCode);
+            if (sellerId) params.append('selling_partner_id', sellerId);
+            if (error) params.append('error', error);
+            if (errorDescription) params.append('error_description', errorDescription);
+            
+            return `${baseURL}?${params.toString()}`;
+        }
+
+        // Redirect immediately
+        const redirectURL = buildRedirectURL();
+        
+        // Display debug info on the page
+        const debugContent = document.getElementById('debug-content');
+        debugContent.innerHTML = `
+            Current URL: ${window.location.href}<br>
+            OAuth Code: ${oauthCode || 'None'}<br>
+            Seller ID: ${sellerId || 'None'}<br>
+            Error: ${error || 'None'}<br>
+            Error Description: ${errorDescription || 'None'}<br>
+            Redirect URL: ${redirectURL}<br>
+            Has window.opener: ${!!window.opener}<br>
+            Window name: ${window.name || 'None'}
+        `;
+        
+        console.log('=== OAUTH REDIRECT DEBUG ===');
+        console.log('Current URL:', window.location.href);
+        console.log('OAuth Code:', oauthCode);
+        console.log('Seller ID:', sellerId);
+        console.log('Error:', error);
+        console.log('Error Description:', errorDescription);
+        console.log('Redirecting to:', redirectURL);
+        console.log('============================');
+        
+        // Set the manual link
+        document.getElementById('manualLink').href = redirectURL;
+        
+        // Check if we're in a popup window
+        if (window.opener) {
+            // We're in a popup, communicate directly with parent window
+            document.getElementById('status').textContent = 'Popup detected - sending data to parent window...';
+            console.log('=== POPUP DETECTED ===');
+            console.log('Sending OAuth data to parent window...');
+            console.log('OAuth Code:', oauthCode);
+            console.log('Seller ID:', sellerId);
+            
+            try {
+                window.opener.postMessage({
+                    type: 'amazon_oauth_success',
+                    oauthCode: oauthCode,
+                    sellerId: sellerId
+                }, '*');
+                console.log('Message sent successfully');
+                document.getElementById('status').textContent = 'Data sent successfully - closing popup...';
+            } catch (error) {
+                console.error('Failed to send message:', error);
+                document.getElementById('status').textContent = 'Failed to send data: ' + error.message;
+            }
+            
+            // Close the popup
+            setTimeout(() => {
+                console.log('Closing popup...');
+                document.getElementById('status').textContent = 'Closing popup...';
+                window.close();
+            }, 3000);
+        } else {
+            // We're in a regular window, redirect after a short delay
+            document.getElementById('status').textContent = 'Regular window - redirecting...';
+            console.log('=== REGULAR WINDOW ===');
+            setTimeout(() => {
+                try {
+                    window.location.href = redirectURL;
+                } catch (error) {
+                    console.error('Redirect failed:', error);
+                    // Show error message
+                    document.getElementById('status').textContent = 'Redirect failed. Please click the manual link below.';
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
