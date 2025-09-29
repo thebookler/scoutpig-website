@@ -41,7 +41,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Redirecting to ScoutPig Web App...</h1>
+        <h1 id="status">Redirecting to ScoutPig Web App...</h1>
         <div class="spinner"></div>
         <p>Please wait while we redirect you to the web application.</p>
         <p><small>If you are not redirected automatically, <a href="#" id="manualLink">click here</a>.</small></p>
@@ -76,15 +76,55 @@
 
         // Redirect immediately
         const redirectURL = buildRedirectURL();
+        console.log('=== OAUTH REDIRECT DEBUG ===');
+        console.log('Current URL:', window.location.href);
+        console.log('OAuth Code:', oauthCode);
+        console.log('Seller ID:', sellerId);
+        console.log('Error:', error);
+        console.log('Error Description:', errorDescription);
         console.log('Redirecting to:', redirectURL);
+        console.log('============================');
         
         // Set the manual link
         document.getElementById('manualLink').href = redirectURL;
         
-        // Redirect after a short delay to show the loading message
-        setTimeout(() => {
-            window.location.href = redirectURL;
-        }, 1000);
+        // Check if we're in a popup window
+        if (window.opener) {
+            // We're in a popup, communicate directly with parent window
+            console.log('=== POPUP DETECTED ===');
+            console.log('Sending OAuth data to parent window...');
+            console.log('OAuth Code:', oauthCode);
+            console.log('Seller ID:', sellerId);
+            
+            try {
+                window.opener.postMessage({
+                    type: 'amazon_oauth_success',
+                    oauthCode: oauthCode,
+                    sellerId: sellerId
+                }, '*');
+                console.log('Message sent successfully');
+            } catch (error) {
+                console.error('Failed to send message:', error);
+            }
+            
+            // Close the popup
+            setTimeout(() => {
+                console.log('Closing popup...');
+                window.close();
+            }, 2000);
+        } else {
+            // We're in a regular window, redirect after a short delay
+            console.log('=== REGULAR WINDOW ===');
+            setTimeout(() => {
+                try {
+                    window.location.href = redirectURL;
+                } catch (error) {
+                    console.error('Redirect failed:', error);
+                    // Show error message
+                    document.getElementById('status').textContent = 'Redirect failed. Please click the manual link below.';
+                }
+            }, 1000);
+        }
     </script>
 </body>
 </html>
