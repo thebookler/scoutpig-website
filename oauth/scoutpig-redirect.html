@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to ScoutPig Web App...</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Redirecting to ScoutPig Web App...</h1>
+        <div class="spinner"></div>
+        <p>Please wait while we redirect you to the web application.</p>
+        <p><small>If you are not redirected automatically, <a href="#" id="manualLink">click here</a>.</small></p>
+    </div>
+
+    <script>
+        // Parse URL parameters
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Extract all parameters from the current URL
+        const oauthCode = getQueryParam("spapi_oauth_code");
+        const sellerId = getQueryParam("selling_partner_id");
+        const error = getQueryParam("error");
+        const errorDescription = getQueryParam("error_description");
+
+        // Build the redirect URL with all parameters
+        function buildRedirectURL() {
+            const baseURL = 'https://scoutpig.web.app/oauth-callback.html';
+            const params = new URLSearchParams();
+            
+            // Add all parameters that exist
+            if (oauthCode) params.append('spapi_oauth_code', oauthCode);
+            if (sellerId) params.append('selling_partner_id', sellerId);
+            if (error) params.append('error', error);
+            if (errorDescription) params.append('error_description', errorDescription);
+            
+            return `${baseURL}?${params.toString()}`;
+        }
+
+        // Redirect immediately
+        const redirectURL = buildRedirectURL();
+        console.log('Redirecting to:', redirectURL);
+        
+        // Set the manual link
+        document.getElementById('manualLink').href = redirectURL;
+        
+        // Redirect after a short delay to show the loading message
+        setTimeout(() => {
+            window.location.href = redirectURL;
+        }, 1000);
+    </script>
+</body>
+</html>
