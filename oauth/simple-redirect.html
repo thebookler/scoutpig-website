@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OAuth Redirect Test</title>
+</head>
+<body>
+    <h1>OAuth Redirect Test</h1>
+    <p>This page should redirect to the web app.</p>
+    <script>
+        console.log('Redirect page loaded');
+        console.log('Current URL:', window.location.href);
+        
+        // Simple redirect
+        setTimeout(() => {
+            window.location.href = 'https://scoutpig.web.app/oauth-callback.html' + window.location.search;
+        }, 1000);
+    </script>
+</body>
+</html>
